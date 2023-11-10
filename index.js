@@ -1,5 +1,6 @@
 const redux = require("redux");
 const createStore = redux.createStore;
+const combinedReducers = redux.combineReducers
 
 const BUY_CAKE = "BUY_CAKE"; // action name
 const BUY_ICECREAM = "BUY_ICECREAM"; // action name
@@ -19,29 +20,37 @@ function buyIcream() {
     }
 }
 
-const initialState = {
-    numberOfCakes: 10, 
-    numberOfIcream: 20
+const initialCakesState = {
+    numberOfCakes: 10
 }
 
-const reducer = (state = initialState, action) => {
+const initialIcreamState = {
+    numberOfIcreams: 20
+}
+
+const cakesReducer = (state = initialCakesState, action) => {
     switch(action.type) {
         case BUY_CAKE: {
             return {
-                ...state,  // make a copy of the state object in case it con
-                numberOfCakes: state.numberOfCakes - 1
-            }
-        }
-        case BUY_ICECREAM: {
-            return {
                 ...state,
-                numberOfIcream: state.numberOfIcream - 1
+                numberOfCakes: numberOfCakes - 1
             }
         }
-        default: return state;
+        default: return state
     }
 }
 
+const iceCreamReducer = (state = initialIcreamState , action) => {
+    switch (action.type) {
+        case BUY_CAKE: {
+            return {
+                ...state,
+                numberOfIcreams: numberOfIcreams - 1
+            }
+        }
+        default: return state
+    }
+}
 
 const store = createStore(reducer)
 
