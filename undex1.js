@@ -9,6 +9,12 @@
  * - subscribe using store and the subscribe method that takes in a function
  * - unsubscriibe using a function that is returned by the subscribe method
  */
+
+/**
+ * middleware: 
+ *  -> adds custom functionalities to redux
+ *  -> provides third party extension between dispatching an action and the moment it reaches the reducer
+ */
 const redux = require("redux")
 const createStore = redux.createStore
 
