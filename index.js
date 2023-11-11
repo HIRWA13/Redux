@@ -33,35 +33,34 @@ const cakesReducer = (state = initialCakesState, action) => {
         case BUY_CAKE: {
             return {
                 ...state,
-                numberOfCakes: numberOfCakes - 1
+                numberOfCakes: state.numberOfCakes - 1
             }
         }
         default: return state
     }
 }
 
-const iceCreamReducer = (state = initialIcreamState , action) => {
-    switch (action.type) {
-        case BUY_CAKE: {
-            return {
-                ...state,
-                numberOfIcreams: numberOfIcreams - 1
-            }
-        }
-        default: return state
-    }
-}
+// const iceCreamReducer = (state = initialIcreamState , action) => {
+//     switch (action.type) {
+//         case BUY_CAKE: {
+//             return {
+//                 ...state,
+//                 numberOfIcreams: numberOfIcreams - 1
+//             }
+//         }
+//         default: return state
+//     }
+// }
 
-const store = createStore(reducer)
+const store = createStore(cakesReducer)
 
 console.log("state", store.getState())
 const unsubscribe = store.subscribe(() => console.log("subscribed. updated state: ", store.getState()));
 
 store.dispatch(buyCake())
 store.dispatch(buyCake())
-store.dispatch(buyCake())
 
-store.dispatch(buyIcream())
-store.dispatch(buyIcream())
+// store.dispatch(buyIcream())
+// store.dispatch(buyIcream())
 
 unsubscribe();
